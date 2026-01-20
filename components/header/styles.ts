@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const HeaderStyle = styled.header`
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  gap: 2rem;
   grid-area: header;
 `;
 
@@ -17,4 +18,16 @@ export const LogoStyle = styled.h1`
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+`;
+
+export const LeftStyle = styled.div`
+  flex: 2;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const RightStyle = styled.div`
+  display: flex;
+  align-items: center;
 `;

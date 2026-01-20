@@ -12,6 +12,7 @@ interface CardProps {
   title: string;
   value: string | number;
   trend?: Trend;
+  isMoney?: boolean;
 }
 
 const CardTrend = ({ trend }: Pick<CardProps, "trend">) => {
@@ -31,11 +32,22 @@ const CardTrend = ({ trend }: Pick<CardProps, "trend">) => {
   return component[trend as keyof typeof Trend];
 };
 
-export const Card = ({ title, value, trend }: CardProps) => {
+export const Card = ({ title, value, trend, isMoney }: CardProps) => {
+  const convertedValue = () => {
+    if (isMoney) {
+      return value.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      });
+    }
+
+    return value;
+  };
+
   return (
     <CardStyle>
       <CardTitleStyle>{title}</CardTitleStyle>
-      <CardValueStyle>{value}</CardValueStyle>
+      <CardValueStyle>{convertedValue()}</CardValueStyle>
 
       {trend && <CardTrend trend={trend} />}
     </CardStyle>

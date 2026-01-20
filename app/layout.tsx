@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Container } from "@/components";
 import StyledComponentsRegistry from "./registry";
 
+import Providers from "@/providers";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -32,7 +33,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}
       >
         <StyledComponentsRegistry>
-          <Container>{children}</Container>
+          <Container>
+            <Providers>{children}</Providers>
+          </Container>
         </StyledComponentsRegistry>
       </body>
     </html>

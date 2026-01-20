@@ -31,7 +31,7 @@ export const Sidebar = () => {
           data-active={pathname === item.pathname}
         >
           <Icon name={item.icon} />
-          {item.title}
+          <span>{item.title}</span>
         </SideBarItemStyle>
       ))}
     </SidebarStyle>

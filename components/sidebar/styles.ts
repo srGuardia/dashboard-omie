@@ -6,6 +6,16 @@ export const SidebarStyle = styled.aside`
   flex-direction: column;
   gap: 1rem;
   grid-area: sidebar;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+
+  @media (max-width: 580px) {
+    align-items: center;
+  }
+
+  @media (max-width: 425px) {
+    flex-direction: row;
+  }
 `;
 
 type SideBarItemStyleProps = {
@@ -13,23 +23,51 @@ type SideBarItemStyleProps = {
 };
 
 export const SideBarItemStyle = styled(Link)<SideBarItemStyleProps>`
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 1rem;
   padding: 1rem;
   cursor: pointer;
-  transition: all 0.25s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  white-space: nowrap;
+  overflow: hidden;
 
   ${({ ...props }) =>
     props["data-active"] &&
     `
-    background-color: #f5f5f5;
+    background: var(--gradient);
     color: #000000;
     cursor: not-allowed;
   `}
 
   &:hover {
-    background-color: #f5f5f5;
+    background: var(--gradient);
     color: #000000;
+  }
+
+  span {
+    transition:
+      opacity 0.3s ease-in-out,
+      transform 0.3s ease-in-out;
+    opacity: 1;
+    transform: translateX(0);
+    display: block;
+  }
+
+  @media (max-width: 580px) {
+    justify-content: center;
+
+    span {
+      display: none;
+      opacity: 0;
+      transform: translateX(-10px);
+      width: 0;
+      overflow: hidden;
+    }
+  }
+
+  @media (max-width: 425px) {
+    height: 100%;
   }
 `;
