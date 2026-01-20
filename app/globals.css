@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --gradient: linear-gradient(to right, #00b4d8, #0083b0);
 }
 
 @theme inline {
