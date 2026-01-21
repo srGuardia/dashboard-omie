@@ -8,10 +8,16 @@ export async function getProducts({ skip = 0 }: { skip?: number }) {
   );
 }
 
-export async function getSearchProduct({ query }: { query: string }) {
-  return await fetch(`${BASE_URL}/products/search?q=${query}`).then((res) =>
-    res.json(),
-  );
+export async function getSearchProduct({
+  query,
+  skip,
+}: {
+  query: string;
+  skip?: number;
+}) {
+  return await fetch(
+    `${BASE_URL}/products/search?q=${query}&limit=10&skip=${skip}`,
+  ).then((res) => res.json());
 }
 
 export async function getCategories() {

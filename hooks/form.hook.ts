@@ -18,8 +18,6 @@ export function useForm({ schema }: FormHookProps) {
   });
 
   function onSubmitForm(data: FormData<typeof schema>) {
-    console.log("Executing form submit");
-
     const { success, error } = schema.safeParse(data);
 
     if (!success) {

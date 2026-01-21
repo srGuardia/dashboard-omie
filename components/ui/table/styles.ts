@@ -88,34 +88,6 @@ export const TableCellStyle = styled.td`
   }
 `;
 
-export const PaginationStyle = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 2rem;
-  padding: 1.6rem;
-  background: var(--background);
-  border-radius: 0.8rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-
-  .pagination-controls {
-    display: flex;
-    align-items: center;
-    gap: 1.6rem;
-  }
-
-  .page-info {
-    font-size: 1.4rem;
-    color: var(--foreground);
-    font-weight: 500;
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 1.6rem;
-  }
-`;
-
 export const PaginationButtonStyle = styled.button`
   padding: 0.8rem 1.6rem;
   background: var(--gradient);
@@ -144,9 +116,53 @@ export const PaginationButtonStyle = styled.button`
 `;
 
 export const PaginationInfoStyle = styled.span`
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: var(--foreground);
   opacity: 0.8;
+`;
+
+export const PaginationStyle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 1.6rem;
+  background: var(--background);
+  border-radius: 0.8rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  .pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+  }
+
+  .page-info {
+    font-size: 1.4rem;
+    color: var(--foreground);
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1.6rem;
+
+    .page-info {
+      font-size: 1rem;
+    }
+
+    .pagination-controls {
+      gap: 1rem;
+    }
+
+    ${PaginationButtonStyle} {
+      font-size: 1rem;
+    }
+
+    ${PaginationInfoStyle} {
+      font-size: 1rem;
+    }
+  }
 `;
 
 export const EmptyStateStyle = styled.div`

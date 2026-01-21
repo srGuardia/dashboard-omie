@@ -1,4 +1,5 @@
 import { Kpi, ProductList } from "@/components";
+import { Suspense } from "react";
 
 export default function HomePage() {
   return (
@@ -6,7 +7,9 @@ export default function HomePage() {
       <Kpi />
 
       <div className="mt-10">
-        <ProductList />
+        <Suspense fallback={<div>Loading...</div>}>
+          <ProductList />
+        </Suspense>
       </div>
     </>
   );

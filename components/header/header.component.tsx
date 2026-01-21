@@ -1,22 +1,17 @@
 import { Suspense } from "react";
 
+import { SearchForm } from "../form";
 import { Avatar, AvatarLoading } from "../ui";
-import { HeaderStyle, LeftStyle, LogoStyle, RightStyle } from "./styles";
+import { HeaderLogo } from "./header-logo.component";
+import { HeaderStyle, LeftStyle, RightStyle } from "./styles";
 
 export const Header = () => {
   return (
     <HeaderStyle>
       <LeftStyle>
-        <LogoStyle>Omie</LogoStyle>
+        <HeaderLogo />
 
-        {/* <form onSubmit={onSubmit}>
-          <Input
-            type="text"
-            placeholder="Faça uma busca, ex: macbook"
-            name="search"
-            control={control}
-          />
-        </form> */}
+        <SearchForm />
       </LeftStyle>
 
       <RightStyle>

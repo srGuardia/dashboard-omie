@@ -6,6 +6,12 @@ export const AvatarContainerStyle = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1rem;
+
+  @media (max-width: 580px) {
+    span {
+      display: none;
+    }
+  }
 `;
 
 export const AvatarTextStyle = styled.span`

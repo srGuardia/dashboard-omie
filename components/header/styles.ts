@@ -15,6 +15,7 @@ export const LogoStyle = styled.h1`
   font-size: 2rem;
   font-weight: 900;
   letter-spacing: 0.1rem;
+  cursor: pointer;
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

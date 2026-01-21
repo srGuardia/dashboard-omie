@@ -14,7 +14,11 @@ type Item = {
 
 const items: Item[] = [
   { title: "Dashboard", icon: "layout-dashboard", pathname: "/" },
-  { title: "Produtos", icon: "git-pull-request-closed", pathname: "/products" },
+  {
+    title: "Produtos",
+    icon: "git-pull-request-closed",
+    pathname: "/products?reset=true",
+  },
   { title: "Usuários", icon: "user", pathname: "/users" },
   { title: "Configurações", icon: "settings", pathname: "/settings" },
 ] as const;
@@ -28,7 +32,7 @@ export const Sidebar = () => {
         <SideBarItemStyle
           key={index}
           href={item.pathname}
-          data-active={pathname === item.pathname}
+          data-active={pathname === item.pathname?.split("?")[0]}
         >
           <Icon name={item.icon} />
           <span>{item.title}</span>

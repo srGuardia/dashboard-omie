@@ -5,10 +5,14 @@ export const InputContainerStyle = styled.div`
   align-items: center;
   gap: 0.5rem;
   width: 100%;
+
+  @media (max-width: 580px) {
+    flex-direction: column;
+  }
 `;
 
 type InputProps = {
-  isError?: boolean;
+  "data-error"?: boolean;
 };
 
 export const InputStyle = styled.input<InputProps>`
@@ -16,7 +20,6 @@ export const InputStyle = styled.input<InputProps>`
   min-width: 25rem;
   height: 2.5rem;
   background-color: #ffffff;
-  border: 0.1rem solid #000000;
   padding: 0.5rem;
   color: #000000;
   outline: none;
@@ -25,11 +28,16 @@ export const InputStyle = styled.input<InputProps>`
     color: #dedede;
   }
 
-  ${({ isError }) =>
-    isError &&
+  ${({ ...props }) =>
+    props?.["data-error"] &&
     `
-    border-color: #ff0000;
+      box-shadow: 0 0 0.8rem 0.2rem #ff0000;
   `}
+
+  @media (max-width: 580px) {
+    width: 100%;
+    min-width: 100%;
+  }
 `;
 
 export const InputErrorStyle = styled.span`
