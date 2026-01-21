@@ -14,10 +14,6 @@ export const ContainerStyle = styled.div`
   transition: grid-template-columns 0.3s ease-in-out;
 
   @media (max-width: 580px) {
-    grid-template-columns: 4rem repeat(2, 1fr);
-  }
-
-  @media (max-width: 425px) {
     grid-template-areas:
       "header"
       "content"

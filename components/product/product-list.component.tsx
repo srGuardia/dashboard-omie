@@ -1,18 +1,18 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+
 import { ProductListDataSchema } from "@/schemas";
 import { getProducts, getSearchProduct } from "@/services";
 import { useSearchStore } from "@/stores";
-import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import { Table } from "../ui";
 
 const itemsPerPage = 10 as const;
 
 export const ProductList = () => {
-  const [skip, setSkip] = useState(0);
-  const { searchQuery, clearSearch } = useSearchStore();
+  const { searchQuery, clearSearch, skip, setSkip } = useSearchStore();
   const searchParams = useSearchParams();
 
   const errorParam = searchParams.get("error");
@@ -54,6 +54,7 @@ export const ProductList = () => {
       return results;
     },
     enabled: !!searchQuery,
+    retry: false,
   });
 
   const data = searchQuery ? searchData : productsData;
@@ -68,7 +69,7 @@ export const ProductList = () => {
     clearSearch();
 
     return () => setSkip(0);
-  }, [clearSearch]);
+  }, [clearSearch, setSkip]);
 
   return (
     <Table

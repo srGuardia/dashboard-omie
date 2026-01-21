@@ -11,9 +11,6 @@ export const SidebarStyle = styled.aside`
 
   @media (max-width: 580px) {
     align-items: center;
-  }
-
-  @media (max-width: 425px) {
     flex-direction: row;
   }
 `;
@@ -57,6 +54,7 @@ export const SideBarItemStyle = styled(Link)<SideBarItemStyleProps>`
 
   @media (max-width: 580px) {
     justify-content: center;
+    height: 100%;
 
     span {
       display: none;
@@ -65,9 +63,5 @@ export const SideBarItemStyle = styled(Link)<SideBarItemStyleProps>`
       width: 0;
       overflow: hidden;
     }
-  }
-
-  @media (max-width: 425px) {
-    height: 100%;
   }
 `;

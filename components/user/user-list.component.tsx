@@ -1,26 +1,74 @@
 "use client";
 
-import { UsersListDataSchema } from "@/schemas";
-import { getUsers } from "@/services";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+
+import { UsersListDataSchema } from "@/schemas";
+import { getSearchUsers, getUsers } from "@/services";
+import { useSearchStore } from "@/stores";
 import { Table } from "../ui";
 
-export const UserList = () => {
-  const [skip, setSkip] = useState(0);
-  const itemsPerPage = 10;
+const itemsPerPage = 10 as const;
 
-  const { data, isLoading, error } = useQuery<UsersListDataSchema>({
+export const UserList = () => {
+  const { searchQuery, clearSearch, skip, setSkip } = useSearchStore();
+  const searchParams = useSearchParams();
+
+  const errorParam = searchParams.get("error");
+
+  const {
+    data: usersData,
+    isLoading: isLoadingUsers,
+    error: usersError,
+  } = useQuery<UsersListDataSchema>({
     queryKey: ["users", skip],
     queryFn: async () => {
+      if (errorParam) {
+        const delay = () => new Promise((resolve) => setTimeout(resolve, 2000));
+        await delay();
+        throw new Error("Erro feito para testes ao buscar usuários");
+      }
+
       const products = await getUsers({ skip });
       return products;
     },
+    enabled: !searchQuery,
+    retry: false,
+  });
+
+  const {
+    data: searchData,
+    isLoading: isLoadingSearch,
+    error: searchError,
+  } = useQuery<UsersListDataSchema>({
+    queryKey: ["search_users", searchQuery, skip],
+    queryFn: async () => {
+      if (errorParam) {
+        const delay = () => new Promise((resolve) => setTimeout(resolve, 2000));
+        await delay();
+        throw new Error("Erro feito para testes ao buscar usuários pela busca");
+      }
+
+      const results = await getSearchUsers({ query: searchQuery, skip });
+      return results;
+    },
+    enabled: !!searchQuery,
   });
 
   const handlePageChange = (newSkip: number) => {
     setSkip(newSkip);
   };
+
+  const data = searchQuery ? searchData : usersData;
+  const isLoading = searchQuery ? isLoadingSearch : isLoadingUsers;
+  const error = searchQuery ? searchError : usersError;
+
+  useEffect(() => {
+    clearSearch();
+
+    return () => setSkip(0);
+  }, [clearSearch, setSkip]);
 
   return (
     <Table

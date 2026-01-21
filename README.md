@@ -280,7 +280,7 @@ export const ContainerStyle = styled.div`
 Usado para utilitários e prototipagem rápida:
 
 ```tsx
-<body className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}>
+<body className={`${robotoSans.variable} ${robotoMono.variable} scroll-smooth antialiased`}>
 ```
 
 Esta combinação oferece flexibilidade máxima - styled-components para lógica complexa e Tailwind para utilitários rápidos.

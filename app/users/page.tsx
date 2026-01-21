@@ -1,5 +1,6 @@
 import { UserList } from "@/components/user";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Omie - Usuários",
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 };
 
 export default function UsersPage() {
-  return <UserList />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <UserList />
+    </Suspense>
+  );
 }
