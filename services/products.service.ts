@@ -21,16 +21,22 @@ export async function getSearchProduct({
 }
 
 export async function getCategories() {
+  "use cache";
+
   return await fetch(`${BASE_URL}/products/category-list`).then((res) =>
     res.json(),
   );
 }
 
 export async function getProductsStats() {
+  "use cache";
+
   return await fetch(`${BASE_URL}/products?limit=0`).then((res) => res.json());
 }
 
 export async function getAllProducts() {
+  "use cache";
+
   return await fetch(`${BASE_URL}/products?limit=194`).then((res) =>
     res.json(),
   );

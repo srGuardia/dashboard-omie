@@ -14,10 +14,6 @@ export async function getUser({ userId }: { userId: number }) {
 }
 
 export async function getUsers({ skip = 0 }: { skip?: number }) {
-  "use cache";
-
-  cacheLife("hours");
-
   return await fetch(`${BASE_URL}/users?limit=10&skip=${skip}`, {
     method: "GET",
   }).then((res) => res.json());
